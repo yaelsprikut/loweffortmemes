@@ -63,15 +63,18 @@ class App extends React.Component<Props, State> {
           </Card.Text>
         </Card.Body>
         <Card.Footer className="text-muted">
-            <Button
-              size="lg"
-              variant="success"
-              onClick={() => window.location.reload()}
-            >
-              Random Meme
-            </Button><br/>
-            <small>Can't see the meme? Here's the <a href={post.url}>OG URL</a></small>
-          </Card.Footer>
+          <Button
+            size="lg"
+            variant="success"
+            onClick={() => window.location.reload()}
+          >
+            Random Meme
+          </Button>
+          <br />
+          <small>
+            Can't see the meme? Here's the <a href={post.url}>OG URL</a>
+          </small>
+        </Card.Footer>
       </Card>
     )
 
@@ -79,11 +82,15 @@ class App extends React.Component<Props, State> {
       <div className="App">
         <header className="App-header">
           {post && post.url ? card(post) : spinner}
-          <br /><br/>
+          <br />
+          <br />
         </header>
         <Navbar className="backgroundFooter" variant="dark" fixed="bottom">
           <Navbar.Brand>
-            Created with &hearts; by: <a href="http://yael.co" target="_blank">yael.co</a>
+            Created with &hearts; by:{' '}
+            <a href="http://yael.co" target="_blank">
+              yael.co
+            </a>
           </Navbar.Brand>
         </Navbar>
       </div>

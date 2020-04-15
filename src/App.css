@@ -41,15 +41,15 @@
 }
 
 .backgroundFooter {
-  background-color: #A44A3F !important;
+  background-color: #a44a3f !important;
 }
 
 .navbar-brand > a {
-  color: #CBDFBD !important;
+  color: #cbdfbd !important;
 }
 
 .card-body {
-  background-color: #CBDFBD;
+  background-color: #cbdfbd;
 }
 
 @keyframes App-logo-spin {
