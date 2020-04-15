@@ -96,6 +96,7 @@ class App extends React.Component<Props, State> {
               yael.co
             </a>
           </Navbar.Brand>
+          <img width="2%" alt="githubicon" src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/github-square-512.png"></img><a style={{color: 'black'}} href="https://github.com/yaelsprikut/loweffortmemes" target="_blank">View on GitHub</a>
         </Navbar>
       </div>
     )
