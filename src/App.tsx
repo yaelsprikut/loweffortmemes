@@ -69,7 +69,8 @@ class App extends React.Component<Props, State> {
               onClick={() => window.location.reload()}
             >
               Random Meme
-            </Button>
+            </Button><br/>
+            <small>Can't see the meme? Here's the <a href={post.url}>OG URL</a></small>
           </Card.Footer>
       </Card>
     )

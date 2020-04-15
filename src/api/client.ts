@@ -13,7 +13,9 @@ const subreddits = [
   'blackpeopletwitter',
   'funny',
   'shittyadviceanimals',
-  'meirl'
+  'meirl',
+  'memes',
+  'terriblefacebookmemes'
 ]
 
 const randomSub = (arr: any) => arr[Math.floor(Math.random() * arr.length)]
