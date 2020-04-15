@@ -40,6 +40,18 @@
   color: #61dafb;
 }
 
+.backgroundFooter {
+  background-color: #A44A3F !important;
+}
+
+.navbar-brand > a {
+  color: #CBDFBD !important;
+}
+
+.card-body {
+  background-color: #CBDFBD;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

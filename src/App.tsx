@@ -3,6 +3,7 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
+import Navbar from 'react-bootstrap/Navbar'
 import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
 import { fetchPosts } from './api/client'
@@ -60,7 +61,8 @@ class App extends React.Component<Props, State> {
               'Meme Unavailable'
             )}
           </Card.Text>
-          <Card.Footer className="text-muted">
+        </Card.Body>
+        <Card.Footer className="text-muted">
             <Button
               size="lg"
               variant="success"
@@ -69,7 +71,6 @@ class App extends React.Component<Props, State> {
               Random Meme
             </Button>
           </Card.Footer>
-        </Card.Body>
       </Card>
     )
 
@@ -77,8 +78,14 @@ class App extends React.Component<Props, State> {
       <div className="App">
         <header className="App-header">
           {post && post.url ? card(post) : spinner}
-          <br />
+          <br /><br/>
         </header>
+        <Navbar className="backgroundFooter" variant="dark" fixed="bottom">
+          <Navbar.Brand>
+            <img alt="" src="/logo.svg" className="d-inline-block align-top" />{' '}
+            Created with &hearts; by: <a href="http://yael.co" target="_blank">yael.co</a>
+          </Navbar.Brand>
+        </Navbar>
       </div>
     )
   }
