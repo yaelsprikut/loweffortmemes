@@ -7,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
 import { fetchPosts } from './api/client'
+import { colourScemeMap } from './components/maps/map'
 
 const override = css`
   display: block;
@@ -20,13 +21,14 @@ interface State {
   data: {
     title: any
     url: any
+    subreddit: any
   }
 }
 
 class App extends React.Component<Props, State> {
   constructor(props: any) {
     super(props)
-    this.state = { data: { title: null, url: null } }
+    this.state = { data: { title: null, url: null, subreddit: null } }
   }
 
   async componentDidMount() {
@@ -36,6 +38,8 @@ class App extends React.Component<Props, State> {
 
   render() {
     const post = this.state.data
+    const theme = post.subreddit ? colourScemeMap.get(post.subreddit) : colourScemeMap.get('BlackPeopleTwitter')
+
     const spinner = (
       <div className="sweet-loading">
         <ClipLoader css={override} size={150} color={'#123abc'} />
@@ -52,7 +56,7 @@ class App extends React.Component<Props, State> {
             {post.subreddit_name_prefixed}
           </a>{' '}
         </Card.Header>
-        <Card.Body>
+        <Card.Body style={{backgroundColor: theme[2]}}>
           <Card.Title>{post.title}</Card.Title>
           <Card.Text>
             {!post.url.includes('.gifv') ? (
@@ -80,12 +84,12 @@ class App extends React.Component<Props, State> {
 
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="App-header" style={{backgroundColor: theme[0]}}>
           {post && post.url ? card(post) : spinner}
           <br />
           <br />
         </header>
-        <Navbar className="backgroundFooter" variant="dark" fixed="bottom">
+        <Navbar style={{backgroundColor: theme[1]}} variant="dark" fixed="bottom">
           <Navbar.Brand>
             Created with &hearts; by:{' '}
             <a href="http://yael.co" target="_blank">

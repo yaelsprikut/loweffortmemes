@@ -26,7 +26,6 @@
 }
 
 .App-header {
-  background-color: #f19c79;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -40,16 +39,8 @@
   color: #61dafb;
 }
 
-.backgroundFooter {
-  background-color: #a44a3f !important;
-}
-
 .navbar-brand > a {
   color: #cbdfbd !important;
-}
-
-.card-body {
-  background-color: #cbdfbd;
 }
 
 @keyframes App-logo-spin {
