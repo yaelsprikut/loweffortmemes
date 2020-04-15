@@ -7,9 +7,21 @@
   pointer-events: none;
 }
 
+.responsive {
+  width: 50%;
+  height: 50%;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .responsive {
+    width: 100%;
+    height: 100%;
   }
 }
 

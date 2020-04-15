@@ -8,16 +8,36 @@ const apiClient = axios.create({
   }
 })
 
-export const fetchPosts = async (subreddit: any) => {
+const subreddits = [
+  'dankmemes',
+  'blackpeopletwitter',
+  'funny',
+  'shittyadviceanimals',
+  'meirl'
+]
+
+const randomSub = (arr: any) => arr[Math.floor(Math.random() * arr.length)]
+
+const getRandomInt = (max: number) =>
+  Math.floor(Math.random() * Math.floor(max))
+
+export const fetchPosts = async () => {
+  const subreddit = randomSub(subreddits)
+  const post = getRandomInt(45)
   try {
-    const response = await apiClient.get<any>('/r/funny/top.json?limit=25')
-    // const user = response.data
-    return response.data.data.children[0].data
+    const response = await apiClient.get<any>(
+      `/r/${subreddit}/top.json?limit=50`
+    )
+    console.log(response.data.data.children[post])
+    if (response.data.data.children[post]) {
+      return response.data.data.children[post].data
+    } else {
+      return window.location.reload()
+    }
   } catch (err) {
     if (err && err.response) {
       console.log(err)
-      //   const axiosError = err as AxiosError<ServerError>
-      //   return axiosError.response.data
+      return false
     }
 
     throw err
