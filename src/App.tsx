@@ -38,7 +38,9 @@ class App extends React.Component<Props, State> {
 
   render() {
     const post = this.state.data
-    const theme = post.subreddit ? colourScemeMap.get(post.subreddit) : colourScemeMap.get('BlackPeopleTwitter')
+    const theme = post.subreddit
+      ? colourScemeMap.get(post.subreddit)
+      : colourScemeMap.get('BlackPeopleTwitter')
 
     const spinner = (
       <div className="sweet-loading">
@@ -56,11 +58,11 @@ class App extends React.Component<Props, State> {
             {post.subreddit_name_prefixed}
           </a>{' '}
         </Card.Header>
-        <Card.Body style={{backgroundColor: theme[2]}}>
+        <Card.Body style={{ backgroundColor: theme[2] }}>
           <Card.Title>{post.title}</Card.Title>
           <Card.Text>
             {!post.url.includes('.gifv') ? (
-              <img src={post.url} className="responsive" alt="meme" />
+              <img src={post.url} className="responsive" alt="funny meme" />
             ) : (
               'Meme Unavailable'
             )}
@@ -84,19 +86,34 @@ class App extends React.Component<Props, State> {
 
     return (
       <div className="App">
-        <header className="App-header" style={{backgroundColor: theme[0]}}>
+        <header className="App-header" style={{ backgroundColor: theme[0] }}>
           {post && post.url ? card(post) : spinner}
           <br />
           <br />
         </header>
-        <Navbar style={{backgroundColor: theme[1]}} variant="dark" fixed="bottom">
+        <Navbar
+          style={{ backgroundColor: theme[1] }}
+          variant="dark"
+          fixed="bottom"
+        >
           <Navbar.Brand>
             Created with &hearts; by:{' '}
             <a href="http://yael.co" target="_blank">
               yael.co
             </a>
           </Navbar.Brand>
-          <img width="2%" alt="githubicon" src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/github-square-512.png"></img><a style={{color: 'black'}} href="https://github.com/yaelsprikut/loweffortmemes" target="_blank">View on GitHub</a>
+          <img
+            width="2%"
+            alt="githubicon"
+            src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/github-square-512.png"
+          ></img>
+          <a
+            style={{ color: 'black' }}
+            href="https://github.com/yaelsprikut/loweffortmemes"
+            target="_blank"
+          >
+            View on GitHub
+          </a>
         </Navbar>
       </div>
     )
