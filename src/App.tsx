@@ -82,7 +82,6 @@ class App extends React.Component<Props, State> {
         </header>
         <Navbar className="backgroundFooter" variant="dark" fixed="bottom">
           <Navbar.Brand>
-            <img alt="" src="/logo.svg" className="d-inline-block align-top" />{' '}
             Created with &hearts; by: <a href="http://yael.co" target="_blank">yael.co</a>
           </Navbar.Brand>
         </Navbar>
