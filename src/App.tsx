@@ -49,7 +49,7 @@ class App extends React.Component<Props, State> {
     )
     const card = (post: any) => (
       <div>
-        <Card.Header>
+        <Card.Header style={{ backgroundColor: theme[0] }}>
           from{' '}
           <a
             href={`https://reddit.com/${post.subreddit_name_prefixed}`}
@@ -59,18 +59,15 @@ class App extends React.Component<Props, State> {
             {post.subreddit_name_prefixed}
           </a>{' '}
         </Card.Header>
-        <Card.Body
-          onClick={() => (window.location.pathname = '/')}
-          style={{ backgroundColor: theme[2] }}
-        >
-          <Card.Title>{post.title}</Card.Title>
-          <Card.Text>
-            {!post.url.includes('.gifv') ? (
-              <img src={post.url} className="responsive" alt="funny meme" />
-            ) : (
-              'Meme Unavailable'
-            )}
-          </Card.Text>
+        <Card.Body onClick={() => (window.location.pathname = '/')}>
+          <Card.Title style={{ backgroundColor: 'white' }}>
+            {post.title}
+          </Card.Title>
+          {!post.url.includes('.gifv') ? (
+            <img src={post.url} className="responsive" alt="funny meme" />
+          ) : (
+            'Meme Unavailable'
+          )}
         </Card.Body>
       </div>
     )
@@ -83,7 +80,7 @@ class App extends React.Component<Props, State> {
             alt="header img"
             style={{ display: 'none' }}
           />
-          <Card bg={'light'} key={'idx'} text={'dark'} className="responsive">
+          <Card key={'idx'} text={'dark'} className="responsive">
             {post && post.url ? card(post) : spinner}
             <Card.Footer className="text-muted">
               <Button
@@ -94,7 +91,13 @@ class App extends React.Component<Props, State> {
                 Random Meme
               </Button>
               <br />
-              <small style={{ fontSize: '14px' }}>
+              <small
+                style={{
+                  fontSize: '20px',
+                  color: 'black',
+                  backgroundColor: theme[0]
+                }}
+              >
                 Can't see the meme? Here's the <a href={post.url}>OG URL</a>
               </small>
             </Card.Footer>
