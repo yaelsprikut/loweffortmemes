@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "deploy": "aws s3 sync build/ s3://loweffortmemes.com --acl public-read",
-    "clean": "npx prettier --write *",
+    "clean": "npx prettier --write src/*.ts *.json src/*.tsx public/ src/components/*",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

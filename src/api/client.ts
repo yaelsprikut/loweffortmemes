@@ -25,16 +25,16 @@ const getRandomInt = (max: number) =>
 
 export const fetchPosts = async () => {
   const subreddit = randomSub(subreddits)
-  const post = getRandomInt(45)
+  const post = getRandomInt(24)
   try {
     const response = await apiClient.get<any>(
-      `/r/${subreddit}/top.json?limit=50`
+      `/r/${subreddit}/top.json?limit=25`
     )
     console.log(response.data.data.children[post])
     if (response.data.data.children[post]) {
       return response.data.data.children[post].data
     } else {
-      return window.location.reload()
+      return window.location.pathname = "/"
     }
   } catch (err) {
     if (err && err.response) {

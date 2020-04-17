@@ -5,14 +5,14 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import Navbar from 'react-bootstrap/Navbar'
 import { css } from '@emotion/core'
-import ClipLoader from 'react-spinners/ClipLoader'
+import RingLoader from 'react-spinners/RingLoader'
 import { fetchPosts } from './api/client'
 import { colourScemeMap } from './components/maps/map'
 
 const override = css`
   display: block;
   margin: 0 auto;
-  border-color: red;
+  color: pink;
 `
 
 interface Props {}
@@ -44,21 +44,25 @@ class App extends React.Component<Props, State> {
 
     const spinner = (
       <div className="sweet-loading">
-        <ClipLoader css={override} size={150} color={'#123abc'} />
+        <RingLoader css={override} size={150} color={'#123abc'} />
       </div>
     )
     const card = (post: any) => (
-      <Card bg={'light'} key={'idx'} text={'dark'} className="responsive">
+      <div>
         <Card.Header>
           from{' '}
           <a
             href={`https://reddit.com/${post.subreddit_name_prefixed}`}
             target="_blank"
+            rel="noopener noreferrer"
           >
             {post.subreddit_name_prefixed}
           </a>{' '}
         </Card.Header>
-        <Card.Body style={{ backgroundColor: theme[2] }}>
+        <Card.Body
+          onClick={() => (window.location.pathname = '/')}
+          style={{ backgroundColor: theme[2] }}
+        >
           <Card.Title>{post.title}</Card.Title>
           <Card.Text>
             {!post.url.includes('.gifv') ? (
@@ -68,26 +72,33 @@ class App extends React.Component<Props, State> {
             )}
           </Card.Text>
         </Card.Body>
-        <Card.Footer className="text-muted">
-          <Button
-            size="lg"
-            variant="success"
-            onClick={() => window.location.reload()}
-          >
-            Random Meme
-          </Button>
-          <br />
-          <small>
-            Can't see the meme? Here's the <a href={post.url}>OG URL</a>
-          </small>
-        </Card.Footer>
-      </Card>
+      </div>
     )
 
     return (
       <div className="App">
-        <header className="App-header" style={{ backgroundColor: theme[0] }}>
-          {post && post.url ? card(post) : spinner}
+        <header className="App-header">
+          <img
+            src="../images/landing-lighter.png"
+            alt="header img"
+            style={{ display: 'none' }}
+          />
+          <Card bg={'light'} key={'idx'} text={'dark'} className="responsive">
+            {post && post.url ? card(post) : spinner}
+            <Card.Footer className="text-muted">
+              <Button
+                size="lg"
+                variant="success"
+                onClick={() => (window.location.pathname = '/')}
+              >
+                Random Meme
+              </Button>
+              <br />
+              <small style={{ fontSize: '14px' }}>
+                Can't see the meme? Here's the <a href={post.url}>OG URL</a>
+              </small>
+            </Card.Footer>
+          </Card>
           <br />
           <br />
         </header>
@@ -98,7 +109,7 @@ class App extends React.Component<Props, State> {
         >
           <Navbar.Brand>
             Created with &hearts; by:{' '}
-            <a href="http://yael.co" target="_blank">
+            <a href="http://yael.co" target="_blank" rel="noopener noreferrer">
               yael.co
             </a>
           </Navbar.Brand>
@@ -111,6 +122,7 @@ class App extends React.Component<Props, State> {
             style={{ color: 'black' }}
             href="https://github.com/yaelsprikut/loweffortmemes"
             target="_blank"
+            rel="noopener noreferrer"
           >
             View on GitHub
           </a>
