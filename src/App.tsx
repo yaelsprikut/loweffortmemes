@@ -12,7 +12,8 @@ import { colourScemeMap } from './components/maps/map'
 const override = css`
   display: block;
   margin: 0 auto;
-  color: pink;
+  border-color: yellow !important;
+  color: yellow !important;
 `
 
 interface Props {}
@@ -22,13 +23,14 @@ interface State {
     title: any
     url: any
     subreddit: any
+    thumbnail: any
   }
 }
 
 class App extends React.Component<Props, State> {
   constructor(props: any) {
     super(props)
-    this.state = { data: { title: null, url: null, subreddit: null } }
+    this.state = { data: { title: null, url: null, subreddit: null, thumbnail: null } }
   }
 
   async componentDidMount() {
@@ -38,13 +40,14 @@ class App extends React.Component<Props, State> {
 
   render() {
     const post = this.state.data
+    console.log(post.thumbnail)
     const theme = post.subreddit
       ? colourScemeMap.get(post.subreddit)
       : colourScemeMap.get('BlackPeopleTwitter')
 
     const spinner = (
       <div className="sweet-loading">
-        <RingLoader css={override} size={150} color={'#123abc'} />
+        <RingLoader css={override} size={150} color={'yellow'} />
       </div>
     )
     const card = (post: any) => (
@@ -58,20 +61,18 @@ class App extends React.Component<Props, State> {
           >
             {post.subreddit_name_prefixed}
           </a>{' '}
+          <br />
+          {post.title}
         </Card.Header>
         <Card.Body onClick={() => (window.location.pathname = '/')}>
-          <Card.Title style={{ backgroundColor: 'white' }}>
-            {post.title}
-          </Card.Title>
-          {!post.url.includes('.gifv') ? (
+          {!post.url.includes('.gifv') && !post.url.includes('v.redd.it') ? (
             <img src={post.url} className="responsive" alt="funny meme" />
           ) : (
-            'Meme Unavailable'
+            <img src={post.thumbnail} className="responsive" alt="funny meme" />
           )}
         </Card.Body>
       </div>
     )
-
     return (
       <div className="App">
         <header className="App-header">
