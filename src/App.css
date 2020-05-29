@@ -13,6 +13,10 @@
   background-color: transparent !important;
 }
 
+.card {
+  border: none !important; 
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -27,7 +31,7 @@
 }
 
 .App-header {
-  background-image: url('./background.jpg');
+  background-image: url('./background.png');
   background-size: cover;
   min-height: 100vh;
   display: flex;

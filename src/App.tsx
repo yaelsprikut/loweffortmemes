@@ -30,7 +30,9 @@ interface State {
 class App extends React.Component<Props, State> {
   constructor(props: any) {
     super(props)
-    this.state = { data: { title: null, url: null, subreddit: null, thumbnail: null } }
+    this.state = {
+      data: { title: null, url: null, subreddit: null, thumbnail: null }
+    }
   }
 
   async componentDidMount() {
@@ -40,10 +42,9 @@ class App extends React.Component<Props, State> {
 
   render() {
     const post = this.state.data
-    console.log(post.thumbnail)
     const theme = post.subreddit
       ? colourScemeMap.get(post.subreddit)
-      : colourScemeMap.get('BlackPeopleTwitter')
+      : colourScemeMap.get('memes')
 
     const spinner = (
       <div className="sweet-loading">
@@ -52,7 +53,7 @@ class App extends React.Component<Props, State> {
     )
     const card = (post: any) => (
       <div>
-        <Card.Header style={{ backgroundColor: theme[0] }}>
+        <Card.Header style={{ backgroundColor: theme ? theme[0] : 'pink' }}>
           from{' '}
           <a
             href={`https://reddit.com/${post.subreddit_name_prefixed}`}
@@ -96,7 +97,7 @@ class App extends React.Component<Props, State> {
                 style={{
                   fontSize: '20px',
                   color: 'black',
-                  backgroundColor: theme[0]
+                  backgroundColor: theme ? theme[0] : 'lightblue'
                 }}
               >
                 Can't see the meme? Here's the <a href={post.url}>OG URL</a>
@@ -107,7 +108,7 @@ class App extends React.Component<Props, State> {
           <br />
         </header>
         <Navbar
-          style={{ backgroundColor: theme[1] }}
+          style={{ backgroundColor: theme ? theme[1] : 'pink' }}
           variant="dark"
           fixed="bottom"
         >

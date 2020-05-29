@@ -10,12 +10,15 @@ const apiClient = axios.create({
 
 const subreddits = [
   'dankmemes',
-  'blackpeopletwitter',
+  'ooer',
+  'gifs',
+  'teenagers',
+  'cutouts',
+  'tinder',
   'funny',
-  'shittyadviceanimals',
   'meirl',
   'memes',
-  'terriblefacebookmemes'
+  'cringepics'
 ]
 
 const randomSub = (arr: any) => arr[Math.floor(Math.random() * arr.length)]
@@ -27,10 +30,12 @@ export const fetchPosts = async () => {
   const subreddit = randomSub(subreddits)
   const post = getRandomInt(24)
   try {
-    const response = await apiClient.get<any>(
+    const response = subreddit === 'cutouts' || 'ooer' ? await apiClient.get<any>(
+      `/r/${subreddit}/new.json?limit=25`
+    ) : await apiClient.get<any>(
       `/r/${subreddit}/top.json?limit=25`
     )
-    console.log(response.data.data.children[post])
+
     if (response.data.data.children[post]) {
       return response.data.data.children[post].data
     } else {
@@ -39,7 +44,7 @@ export const fetchPosts = async () => {
   } catch (err) {
     if (err && err.response) {
       console.log(err)
-      return false
+      // window.location.reload()
     }
 
     throw err
