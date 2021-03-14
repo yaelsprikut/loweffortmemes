@@ -11,14 +11,19 @@ const apiClient = axios.create({
 const subreddits = [
   'dankmemes',
   'ooer',
-  'gifs',
-  'teenagers',
   'cutouts',
   'tinder',
   'funny',
   'meirl',
   'memes',
-  'cringepics'
+  'AdviceAnimals',
+  'MemeEconomy',
+  'shittyadviceanimals',
+  'ComedyCemetery',
+  'coaxedintoasnafu',
+  'PrequelMemes',
+  'teenagers',
+  '2meirl4meirl'
 ]
 
 const randomSub = (arr: any) => arr[Math.floor(Math.random() * arr.length)]
@@ -44,9 +49,23 @@ export const fetchPosts = async () => {
   } catch (err) {
     if (err && err.response) {
       console.log(err)
-      // window.location.reload()
+      window.location.reload()
     }
 
     throw err
   }
+}
+
+const getSubredditFromURL = async (subreddit: string) => {
+  const response = await apiClient.get<any>(
+    `/r/${subreddit}/top.json?limit=25`
+  )
+  const post = getRandomInt(24)
+
+  if (response.data.data.children[post]) {
+    return response.data.data.children[post].data
+  } else {
+    return window.location.pathname = "/"
+  }
+
 }

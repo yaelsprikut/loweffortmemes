@@ -17,6 +17,11 @@
   border: none !important; 
 }
 
+.spicymeme {
+  color: pink;
+  font-weight: 900;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -24,6 +29,9 @@
 }
 
 @media only screen and (max-width: 900px) {
+  .desktopNavbar {
+    display: none !important;
+  }
   .responsive {
     width: 100%;
     height: 100%;
@@ -31,7 +39,7 @@
 }
 
 .App-header {
-  background-image: url('./background.png');
+  background-image: url('./itl.cat_vaporwave-wallpaper_23718.png');
   background-size: cover;
   min-height: 100vh;
   display: flex;
