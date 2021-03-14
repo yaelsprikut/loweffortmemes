@@ -1,13 +1,14 @@
 import React from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
 import Navbar from 'react-bootstrap/Navbar'
 import { css } from '@emotion/core'
 import RingLoader from 'react-spinners/RingLoader'
 import { fetchPosts } from './api/client'
 import { colourScemeMap } from './components/maps/map'
+import SubReddit from './SubReddit'
+
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 const override = css`
   display: block;
@@ -51,29 +52,7 @@ class App extends React.Component<Props, State> {
         <RingLoader css={override} size={150} color={'yellow'} />
       </div>
     )
-    const card = (post: any) => (
-      <div>
-        <Card.Header style={{ backgroundColor: theme ? theme[0] : 'pink' }}>
-          from{' '}
-          <a
-            href={`https://reddit.com/${post.subreddit_name_prefixed}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {post.subreddit_name_prefixed}
-          </a>{' '}
-          <br />
-          {post.title}
-        </Card.Header>
-        <Card.Body onClick={() => (window.location.pathname = '/')}>
-          {!post.url.includes('.gifv') && !post.url.includes('v.redd.it') ? (
-            <img src={post.url} className="responsive" alt="funny meme" />
-          ) : (
-            <img src={post.thumbnail} className="responsive" alt="funny meme" />
-          )}
-        </Card.Body>
-      </div>
-    )
+
     return (
       <div className="App">
         <header className="App-header">
@@ -82,32 +61,22 @@ class App extends React.Component<Props, State> {
             alt="header img"
             style={{ display: 'none' }}
           />
-          <Card key={'idx'} text={'dark'} className="responsive">
-            {post && post.url ? card(post) : spinner}
-            <Card.Footer className="text-muted">
-              <Button
-                size="lg"
-                variant="success"
-                onClick={() => (window.location.pathname = '/')}
-              >
-                Random Meme
-              </Button>
-              <br />
-              <small
-                style={{
-                  fontSize: '20px',
-                  color: 'black',
-                  backgroundColor: theme ? theme[0] : 'lightblue'
-                }}
-              >
-                Can't see the meme? Here's the <a href={post.url}>OG URL</a>
-              </small>
-            </Card.Footer>
-          </Card>
-          <br />
+          <SubReddit theme={theme} post={post} spinner={spinner} />
           <br />
         </header>
         <Navbar
+          className="desktopNavbar"
+          style={{ backgroundColor: 'white' }}
+          variant="dark"
+          fixed="top"
+        >
+          {/* <a href="">Home&nbsp;&nbsp;</a> */}
+          <a href="">&nbsp;<b>Aout Low(er) Effort Memes</b></a>
+          &nbsp;&nbsp;&nbsp;
+          <a href="">&nbsp;Back to Main Web Site</a>
+        </Navbar>
+        <Navbar
+          className="desktopNavbar"
           style={{ backgroundColor: theme ? theme[1] : 'pink' }}
           variant="dark"
           fixed="bottom"
