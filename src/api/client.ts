@@ -23,7 +23,10 @@ const subreddits = [
   'coaxedintoasnafu',
   'PrequelMemes',
   'teenagers',
-  '2meirl4meirl'
+  '2meirl4meirl',
+  'surrealmemes',
+  'nukedmemes',
+  'bonehurtingjuice'
 ]
 
 const randomSub = (arr: any) => arr[Math.floor(Math.random() * arr.length)]
@@ -33,6 +36,7 @@ const getRandomInt = (max: number) =>
 
 export const fetchPosts = async () => {
   const subreddit = randomSub(subreddits)
+  const subredditInfo = await getSubredditInfo(subreddit)
   const post = getRandomInt(24)
   try {
     const response = subreddit === 'cutouts' || 'ooer' ? await apiClient.get<any>(
@@ -40,9 +44,9 @@ export const fetchPosts = async () => {
     ) : await apiClient.get<any>(
       `/r/${subreddit}/top.json?limit=25`
     )
-
+    console.log("RESPONSE: ", response)
     if (response.data.data.children[post]) {
-      return response.data.data.children[post].data
+      return [response.data.data.children[post].data, subredditInfo]
     } else {
       return window.location.pathname = "/"
     }
@@ -52,6 +56,18 @@ export const fetchPosts = async () => {
       window.location.reload()
     }
 
+    throw err
+  }
+}
+
+const getSubredditInfo = async (subreddit: String) => {
+  try {
+    const response = await apiClient.get<any>(
+      `/r/${subreddit}/about.json`
+    );
+    console.log("about....", response.data.data.description)
+    return response.data.data.description
+  } catch (err) {
     throw err
   }
 }
