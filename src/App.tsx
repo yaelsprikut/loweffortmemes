@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from 'react-bootstrap/Navbar'
 import { css } from '@emotion/core'
 import RingLoader from 'react-spinners/RingLoader'
-import { fetchPosts } from './api/client'
+import { fetchPosts,  } from './api/client'
 import { colourScemeMap } from './components/maps/map'
 import SubReddit from './SubReddit'
 
@@ -25,24 +25,31 @@ interface State {
     url: any
     subreddit: any
     thumbnail: any
-  }
+  },
+  about: string
 }
 
 class App extends React.Component<Props, State> {
   constructor(props: any) {
     super(props)
     this.state = {
-      data: { title: null, url: null, subreddit: null, thumbnail: null }
+      data: { title: null, url: null, subreddit: null, thumbnail: null },
+      about: ''
     }
   }
 
   async componentDidMount() {
     const post = await fetchPosts()
-    this.setState({ data: post })
+    console.log("post: ", post)
+    this.setState({ 
+      data: post[0],
+      about: post[1] 
+    })
   }
 
   render() {
     const post = this.state.data
+    const about = this.state.about
     const theme = post.subreddit
       ? colourScemeMap.get(post.subreddit)
       : colourScemeMap.get('memes')
@@ -55,6 +62,7 @@ class App extends React.Component<Props, State> {
 
     return (
       <div className="App">
+        <div id="about-sub"><h2>About this SUb</h2>{about}</div>
         <header className="App-header">
           <img
             src="../images/landing-lighter.png"
@@ -62,19 +70,7 @@ class App extends React.Component<Props, State> {
             style={{ display: 'none' }}
           />
           <SubReddit theme={theme} post={post} spinner={spinner} />
-          <br />
         </header>
-        <Navbar
-          className="desktopNavbar"
-          style={{ backgroundColor: 'white' }}
-          variant="dark"
-          fixed="top"
-        >
-          {/* <a href="">Home&nbsp;&nbsp;</a> */}
-          <a href="">&nbsp;<b>Aout Low(er) Effort Memes</b></a>
-          &nbsp;&nbsp;&nbsp;
-          <a href="">&nbsp;Back to Main Web Site</a>
-        </Navbar>
         <Navbar
           className="desktopNavbar"
           style={{ backgroundColor: theme ? theme[1] : 'pink' }}

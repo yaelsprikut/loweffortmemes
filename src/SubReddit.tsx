@@ -1,7 +1,6 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import throttle from 'lodash.throttle';
 
 interface Props {
   theme: any
@@ -58,6 +57,8 @@ class SubReddit extends React.Component<Props, State> {
           </a>{' '}
           <br />
           {post.title}
+          <br/>
+          <b>{"tap for new meme"}</b>
         </Card.Header>
         <Card.Body onClick={() => console.log("clicked")}>
           {!new RegExp(alternateFormatArray.join('|')).test(post.url) ? (
@@ -70,7 +71,7 @@ class SubReddit extends React.Component<Props, State> {
       </div>
     )
     return (
-      <Card key={'idx'} text={'dark'} className="responsive">
+      <Card key={'idx'} text={'dark'} className="responsive" onClick={() => window.location.reload()}>
         {post && post.url ? card(post) : spinner}
         <Card.Footer className="text-muted">
           <br />
