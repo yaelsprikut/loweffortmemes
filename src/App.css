@@ -39,6 +39,9 @@
 }
 
 @media only screen and (max-width: 900px) {
+  #about-sub {
+    display: none !important;
+  }
   .desktopNavbar {
     display: none !important;
   }
