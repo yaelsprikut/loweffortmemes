@@ -1,5 +1,4 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 
 interface Props {
@@ -13,9 +12,9 @@ interface State {
 }
 
 class SubReddit extends React.Component<Props, State> {
-  constructor(props: any) {
-    super(props)
-  }
+  // constructor(props: any) {
+  //   super(props)
+  // }
 
   render() {
     const { theme, post, spinner } = this.props
@@ -42,7 +41,6 @@ class SubReddit extends React.Component<Props, State> {
       'Space travel makes mice run in loops.'
     ]
     const random = Math.floor(Math.random() * randomPhraseArray.length)
-    const count = 0;
     
     const card = (post: any) => (
       <div>
@@ -57,8 +55,6 @@ class SubReddit extends React.Component<Props, State> {
           </a>{' '}
           <br />
           {post.title}
-          <br/>
-          <b>{"tap for new meme"}</b>
         </Card.Header>
         <Card.Body onClick={() => console.log("clicked")}>
           {!new RegExp(alternateFormatArray.join('|')).test(post.url) ? (
@@ -68,6 +64,7 @@ class SubReddit extends React.Component<Props, State> {
             <p className="spicymeme">{randomPhraseArray[random]}</p>
           )}
         </Card.Body>
+        <b className="new-meme">{"tap for new meme"}</b>
       </div>
     )
     return (

@@ -62,7 +62,7 @@ class App extends React.Component<Props, State> {
 
     return (
       <div className="App">
-        <div id="about-sub"><h2>About this SUb</h2>{about}</div>
+        {/* <div id="about-sub"><h2>About this SUb</h2>{about}</div> */}
         <header className="App-header">
           <img
             src="../images/landing-lighter.png"
