@@ -12,10 +12,6 @@ interface State {
 }
 
 class SubReddit extends React.Component<Props, State> {
-  // constructor(props: any) {
-  //   super(props)
-  // }
-
   render() {
     const { theme, post, spinner } = this.props
     const alternateFormatArray = [
@@ -41,7 +37,7 @@ class SubReddit extends React.Component<Props, State> {
       'Space travel makes mice run in loops.'
     ]
     const random = Math.floor(Math.random() * randomPhraseArray.length)
-    
+
     const card = (post: any) => (
       <div>
         <Card.Header style={{ backgroundColor: theme ? theme[0] : 'pink' }}>
@@ -56,7 +52,7 @@ class SubReddit extends React.Component<Props, State> {
           <br />
           {post.title}
         </Card.Header>
-        <Card.Body onClick={() => console.log("clicked")}>
+        <Card.Body onClick={() => console.log('clicked')}>
           {!new RegExp(alternateFormatArray.join('|')).test(post.url) ? (
             <img src={post.url} className="responsive" alt="funny meme" />
           ) : (
@@ -64,23 +60,29 @@ class SubReddit extends React.Component<Props, State> {
             <p className="spicymeme">{randomPhraseArray[random]}</p>
           )}
         </Card.Body>
-        <b className="new-meme">{"tap for new meme"}</b>
+        {/* <b className="new-meme">{'tap for new meme'}</b> */}
       </div>
     )
     return (
-      <Card key={'idx'} text={'dark'} className="responsive" onClick={() => window.location.reload()}>
+      <Card
+        key={'idx'}
+        text={'dark'}
+        className="responsive"
+        onClick={() => window.location.reload()}
+      >
         {post && post.url ? card(post) : spinner}
         <Card.Footer className="text-muted">
           <br />
-          <small
-            style={{
-              fontSize: '20px',
-              color: 'black',
-              backgroundColor: theme ? theme[0] : 'lightblue'
-            }}
-          >
-            Can't see the meme? Here's the <a href={post.url}>OG URL</a>
-          </small>
+          <p>
+            <small className="bottomText">
+              Can't see the meme? Here's the{' '}
+              <a href={post.url} target="_blank">
+                OG URL
+              </a>
+              <br />
+              OG Reddit Post URL
+            </small>
+          </p>
         </Card.Footer>
       </Card>
     )
