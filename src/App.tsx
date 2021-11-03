@@ -8,8 +8,6 @@ import { fetchPosts } from './api/client'
 import { colourScemeMap } from './components/maps/map'
 import SubReddit from './SubReddit'
 
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-
 const override = css`
   display: block;
   margin: 0 auto;
@@ -40,7 +38,7 @@ class App extends React.Component<Props, State> {
 
   async componentDidMount() {
     const post = await fetchPosts()
-    console.log('post: ', post)
+
     this.setState({
       data: post[0],
       about: post[1]

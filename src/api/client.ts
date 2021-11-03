@@ -41,7 +41,7 @@ export const fetchPosts = async () => {
       subreddit === 'cutouts' || 'ooer'
         ? await apiClient.get<any>(`/r/${subreddit}/new.json?limit=25&t=month`)
         : await apiClient.get<any>(`/r/${subreddit}/top.json?limit=25&t=month`)
-    console.log('RESPONSE: ', response)
+
     if (response.data.data.children[post]) {
       return [response.data.data.children[post].data, subredditInfo]
     } else {
@@ -60,20 +60,19 @@ export const fetchPosts = async () => {
 const getSubredditInfo = async (subreddit: String) => {
   try {
     const response = await apiClient.get<any>(`/r/${subreddit}/about.json`)
-    console.log('about....', response.data.data.description)
     return response.data.data.description
   } catch (err) {
     throw err
   }
 }
 
-const getSubredditFromURL = async (subreddit: string) => {
-  const response = await apiClient.get<any>(`/r/${subreddit}/top.json?limit=25`)
-  const post = getRandomInt(24)
+// const getSubredditFromURL = async (subreddit: string) => {
+//   const response = await apiClient.get<any>(`/r/${subreddit}/top.json?limit=25`)
+//   const post = getRandomInt(24)
 
-  if (response.data.data.children[post]) {
-    return response.data.data.children[post].data
-  } else {
-    return (window.location.pathname = '/')
-  }
-}
+//   if (response.data.data.children[post]) {
+//     return response.data.data.children[post].data
+//   } else {
+//     return (window.location.pathname = '/')
+//   }
+// }

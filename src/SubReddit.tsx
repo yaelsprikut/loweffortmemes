@@ -76,11 +76,9 @@ class SubReddit extends React.Component<Props, State> {
           <p>
             <small className="bottomText">
               Can't see the meme? Here's the{' '}
-              <a href={post.url} target="_blank">
+              <a href={post.url} target="_blank" rel="noopener noreferrer">
                 OG URL
               </a>
-              <br />
-              OG Reddit Post URL
             </small>
           </p>
         </Card.Footer>
