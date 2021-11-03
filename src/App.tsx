@@ -77,7 +77,7 @@ class App extends React.Component<Props, State> {
         >
           <Navbar.Brand>
             Created with &hearts; by:{' '}
-            <a href="http://yael.co" target="_blank" rel="noopener noreferrer">
+            <a href="http://yael.co" target="_blank">
               yael.co
             </a>
           </Navbar.Brand>
