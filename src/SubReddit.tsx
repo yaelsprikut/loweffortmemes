@@ -14,6 +14,7 @@ interface State {
 class SubReddit extends React.Component<Props, State> {
   render() {
     const { theme, post, spinner } = this.props
+
     const alternateFormatArray = [
       'gifv',
       'makeameme',
@@ -40,7 +41,7 @@ class SubReddit extends React.Component<Props, State> {
 
     const card = (post: any) => (
       <div>
-        <Card.Header style={{ backgroundColor: theme ? theme[0] : 'pink' }}>
+        <Card.Header className="card-head">
           from{' '}
           <a
             href={`https://reddit.com/${post.subreddit_name_prefixed}`}
@@ -60,7 +61,6 @@ class SubReddit extends React.Component<Props, State> {
             <p className="spicymeme">{randomPhraseArray[random]}</p>
           )}
         </Card.Body>
-        {/* <b className="new-meme">{'tap for new meme'}</b> */}
       </div>
     )
     return (
