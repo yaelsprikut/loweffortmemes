@@ -8,7 +8,7 @@ const apiClient = axios.create({
   }
 })
 
-const subreddits = [
+export const subreddits = [
   'dankmemes',
   'ooer',
   'cutouts',

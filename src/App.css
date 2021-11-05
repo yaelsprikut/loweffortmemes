@@ -67,7 +67,6 @@
 }
 
 .App-header {
-  background-image: url('./cyberpunk-wallpaper-hd.jpg');
   background-size: cover;
   min-height: 100vh;
   display: flex;
@@ -75,6 +74,19 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+}
+
+/* meme source wallpaper */
+.general-wallpaper {
+  background-image: url('./cyberpunk-wallpaper-hd.jpg');
+}
+
+.fchan-wallpaper {
+  background-image: url('./4chan-wallpaper.jpg');
+}
+
+.ngag-wallpaper {
+  background: black;
 }
 
 .App-link {

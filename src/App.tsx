@@ -5,8 +5,8 @@ import Navbar from 'react-bootstrap/Navbar'
 import { css } from '@emotion/core'
 import RingLoader from 'react-spinners/RingLoader'
 import { fetchPosts } from './api/client'
-import { colourScemeMap } from './components/maps/map'
 import SubReddit from './SubReddit'
+import Filter from './Filter'
 
 const override = css`
   display: block;
@@ -25,6 +25,8 @@ interface State {
     thumbnail: any
   }
   about: string
+  wallpaper: string
+  theme: string
 }
 
 class App extends React.Component<Props, State> {
@@ -32,8 +34,42 @@ class App extends React.Component<Props, State> {
     super(props)
     this.state = {
       data: { title: null, url: null, subreddit: null, thumbnail: null },
-      about: ''
+      about: '',
+      wallpaper: 'general-wallpaper',
+      theme: 'general'
     }
+
+    this.onSelect = this.onSelect.bind(this)
+    this.filterMemeSource = this.filterMemeSource.bind(this)
+    this.fetchNewMeme = this.fetchNewMeme.bind(this)
+  }
+
+  filterMemeSource = (val: any) => {
+    console.log('Filter memes: ', val)
+    switch (val) {
+      case '4chan':
+        this.setState({
+          wallpaper: 'fchan-wallpaper',
+          theme: '4chan'
+        })
+        break
+      case '9gag':
+        this.setState({ wallpaper: 'ngag-wallpaper' })
+        break
+      default:
+        this.setState({ wallpaper: 'general-wallpaper' })
+    }
+  }
+
+  async fetchNewMeme() {
+    const post = await fetchPosts()
+    this.setState({
+      data: post[0]
+    })
+  }
+
+  onSelect = (e: any) => {
+    this.filterMemeSource(e)
   }
 
   async componentDidMount() {
@@ -47,10 +83,8 @@ class App extends React.Component<Props, State> {
 
   render() {
     const post = this.state.data
-    const about = this.state.about
-    const theme = post.subreddit
-      ? colourScemeMap.get(post.subreddit)
-      : colourScemeMap.get('memes')
+    // const about = this.state.about
+    const theme = this.state.theme
 
     const spinner = (
       <div className="sweet-loading">
@@ -61,13 +95,22 @@ class App extends React.Component<Props, State> {
     return (
       <div className="App">
         {/* <div id="about-sub"><h2>About this SUb</h2>{about}</div> */}
-        <header className="App-header">
+        <header className={`App-header ${this.state.wallpaper}`}>
           <img
             src="../images/landing-lighter.png"
             alt="header img"
             style={{ display: 'none' }}
           />
-          <SubReddit theme={theme} post={post} spinner={spinner} />
+          <Filter
+            onSelectSubreddit={() => console.log('hi')}
+            onSelectSource={(e: any) => this.onSelect(e)}
+          />
+          <SubReddit
+            theme={theme}
+            post={post}
+            spinner={spinner}
+            onClick={() => this.fetchNewMeme()}
+          />
         </header>
         <Navbar
           className="desktopNavbar"
@@ -77,7 +120,7 @@ class App extends React.Component<Props, State> {
         >
           <Navbar.Brand>
             Created with &hearts; by:{' '}
-            <a href="http://yael.co" target="_blank">
+            <a href="http://yael.co" target="_blank" rel="noopener noreferrer">
               yael.co
             </a>
           </Navbar.Brand>

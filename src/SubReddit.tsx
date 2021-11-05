@@ -5,6 +5,7 @@ interface Props {
   theme: any
   post: any
   spinner: any
+  onClick: any
 }
 
 interface State {
@@ -13,31 +14,21 @@ interface State {
 
 class SubReddit extends React.Component<Props, State> {
   render() {
-    const { theme, post, spinner } = this.props
+    const { post, spinner } = this.props
 
-    const alternateFormatArray = [
-      'gifv',
-      'makeameme',
-      'v.redd.it',
-      'reddit',
-      'streamable',
-      'imgur',
-      'gfycat',
-      'youtu.be',
-      'youtube'
-    ]
-    const randomPhraseArray = [
-      'Pogonophobia is the fear of beards',
-      'Playing dance music can help ward off mosquitoes',
-      'Cherophobia is the word for the irrational fear of being happy.',
-      "Marie Curie's notebooks are still radioactive.",
-      'The King of Hearts is the only king in a deck of cards without a mustache',
-      "A 'jiffy' is about one trillionth of a second",
-      'The real name of Monopoly mascot Uncle Pennybags is Milburn Pennybags.',
-      'The first email was sent by Ray Tomlinson to himself in 1971.',
-      'Space travel makes mice run in loops.'
-    ]
-    const random = Math.floor(Math.random() * randomPhraseArray.length)
+    // const randomPhraseArray = [
+    //   'Pogonophobia is the fear of beards',
+    //   'Playing dance music can help ward off mosquitoes',
+    //   'Cherophobia is the word for the irrational fear of being happy.',
+    //   "Marie Curie's notebooks are still radioactive.",
+    //   'The King of Hearts is the only king in a deck of cards without a mustache',
+    //   "A 'jiffy' is about one trillionth of a second",
+    //   'The real name of Monopoly mascot Uncle Pennybags is Milburn Pennybags.',
+    //   'The first email was sent by Ray Tomlinson to himself in 1971.',
+    //   'Space travel makes mice run in loops.'
+    // ]
+    // const random = Math.floor(Math.random() * randomPhraseArray.length)
+    const fileExtensionRegex = /\.[0-9a-z]+$/i
 
     const card = (post: any) => (
       <div>
@@ -53,35 +44,36 @@ class SubReddit extends React.Component<Props, State> {
           <br />
           {post.title}
         </Card.Header>
-        <Card.Body onClick={() => console.log('clicked')}>
-          {!new RegExp(alternateFormatArray.join('|')).test(post.url) ? (
+        <Card.Body>
+          {post.url.match(fileExtensionRegex) || post.url.includes('imgur') ? (
             <img src={post.url} className="responsive" alt="funny meme" />
           ) : (
-            // <iframe src={`http://${post.url.substring('https://'.length)}`} onClick={() => window.location.reload()} className="responsive" style={{"width": "500px", "height": "500px"}} />
-            <p className="spicymeme">{randomPhraseArray[random]}</p>
+            <p>
+              {post.selftext}
+              <br />
+              <b>tap for next meme</b>
+            </p>
           )}
         </Card.Body>
       </div>
     )
     return (
-      <Card
-        key={'idx'}
-        text={'dark'}
-        className="responsive"
-        onClick={() => window.location.reload()}
-      >
-        {post && post.url ? card(post) : spinner}
-        <Card.Footer className="text-muted">
+      <Card key={'idx'} text={'dark'} className="responsive">
+        <span onClick={this.props.onClick}>
+          {post && post.url ? card(post) : spinner}
+        </span>
+        <Card.Footer className="text-muted"></Card.Footer>
+        <div>
           <br />
           <p>
             <small className="bottomText">
               Can't see the meme? Here's the{' '}
-              <a href={post.url} target="_blank">
+              <a href={post.url} target="_blank" rel="noopener noreferrer">
                 OG URL
               </a>
             </small>
           </p>
-        </Card.Footer>
+        </div>
       </Card>
     )
   }
