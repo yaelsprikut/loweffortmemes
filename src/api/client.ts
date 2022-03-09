@@ -36,6 +36,7 @@ export const fetchPosts = async () => {
   const subreddit = randomSub(subreddits)
   const subredditInfo = await getSubredditInfo(subreddit)
   const post = getRandomInt(24)
+  let topComments = null
   try {
     const response =
       subreddit === 'cutouts' || 'ooer'
@@ -43,6 +44,11 @@ export const fetchPosts = async () => {
         : await apiClient.get<any>(`/r/${subreddit}/top.json?limit=25&t=month`)
 
     if (response.data.data.children[post]) {
+      if(response.data.data.children[post].data.name) {
+        console.log(response.data.data.children[post].data.name)
+        // topComments = await apiClient.get<any>(`/r/${subreddit}/comments/${response.data.data.children[post].data.name}`)
+      }
+      // console.log("topComments: ", topComments)
       return [response.data.data.children[post].data, subredditInfo]
     } else {
       return (window.location.pathname = '/')

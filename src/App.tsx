@@ -7,6 +7,11 @@ import RingLoader from 'react-spinners/RingLoader'
 import { fetchPosts } from './api/client'
 import { colourScemeMap } from './components/maps/map'
 import SubReddit from './SubReddit'
+<<<<<<< Updated upstream
+=======
+import Filter from './Filter'
+import TopComment from './TopComment'
+>>>>>>> Stashed changes
 
 const override = css`
   display: block;
