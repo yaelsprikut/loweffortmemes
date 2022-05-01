@@ -2,7 +2,7 @@ import React from 'react'
 import { Card } from 'react-bootstrap'
 import Dropdown from 'react-bootstrap/Dropdown'
 // import './TopComment.scss'
-import { subreddits } from './api/client'
+// import { subreddits } from './api/client'
 
 interface Props {
   topComment: any
