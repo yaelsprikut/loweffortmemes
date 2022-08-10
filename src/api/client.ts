@@ -45,7 +45,7 @@ export const fetchPosts = async () => {
 
     if (response.data.data.children[post]) {
       if(response.data.data.children[post].data.name) {
-        console.log(response.data.data.children[post].data.name)
+        // console.log(response.data.data.children[post].data.name)
         // topComments = await apiClient.get<any>(`/r/${subreddit}/comments/${response.data.data.children[post].data.name}`)
       }
       // console.log("topComments: ", topComments)
@@ -53,7 +53,7 @@ export const fetchPosts = async () => {
     } else {
       return (window.location.pathname = '/')
     }
-  } catch (err) {
+  } catch (err: any) {
     if (err && err.response) {
       console.log(err)
       window.location.reload()
