@@ -1,20 +1,20 @@
 import React from 'react'
+import { useState, CSSProperties } from "react"
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from 'react-bootstrap/Navbar'
-import { css } from '@emotion/core'
 import RingLoader from 'react-spinners/RingLoader'
 import { fetchPosts } from './api/client'
 import { colourScemeMap } from './components/maps/map'
 import SubReddit from './SubReddit'
 import TopComment from './TopComment'
 
-const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: yellow !important;
-  color: yellow !important;
-`
+const override: CSSProperties = {
+  display: 'block',
+  margin: '0 auto',
+  borderColor: 'yellow !important',
+  color: 'yellow !important'
+};
 
 interface Props {}
 
@@ -55,7 +55,7 @@ class App extends React.Component<Props, State> {
 
     const spinner = (
       <div className="sweet-loading">
-        <RingLoader css={override} size={150} color={'yellow'} />
+        <RingLoader cssOverride={override} size={150} color={'yellow'} />
       </div>
     )
 

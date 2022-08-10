@@ -10,8 +10,16 @@
       content="A single-page-app that loads random memes"
     />
     <meta
+    name="og:title"
+    content="Memes Only"
+  />
+    <meta
+      name="og:description"
+      content="A single-page-app that loads random memes"
+    />
+    <meta
       property="og:image"
-      content="%PUBLIC_URL%/images/landing-lighter.png"
+      content="%PUBLIC_URL%/images/background.png"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/amongus.png" />
     <!--
@@ -30,6 +38,15 @@
     -->
     <title>low-effort memes</title>
   </head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N2PRT793LF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N2PRT793LF');
+</script>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
