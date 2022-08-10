@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, CSSProperties } from "react"
+import { CSSProperties } from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from 'react-bootstrap/Navbar'
@@ -14,7 +14,7 @@ const override: CSSProperties = {
   margin: '0 auto',
   borderColor: 'yellow !important',
   color: 'yellow !important'
-};
+}
 
 interface Props {}
 
@@ -63,6 +63,7 @@ class App extends React.Component<Props, State> {
       <div className="App">
         {/* <div id="about-sub"><h2>About this SUb</h2>{about}</div> */}
         <header className="App-header">
+          <p style={{ color: 'white' }}>tap for next meme</p>
           <img
             src="../images/landing-lighter.png"
             alt="header img"
