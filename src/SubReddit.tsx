@@ -68,9 +68,11 @@ class SubReddit extends React.Component<Props, State> {
         key={'idx'}
         text={'dark'}
         className="responsive"
-        onClick={() => window.location.reload()}
       >
-        {post && post.url ? card(post) : spinner}
+        <span
+         onClick={() => window.location.reload()}>
+          {post && post.url ? card(post) : spinner}
+        </span>
         <Card.Footer className="text-muted">
           <br />
           <p>

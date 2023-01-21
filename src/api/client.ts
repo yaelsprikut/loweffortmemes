@@ -13,18 +13,20 @@ const subreddits = [
   'ooer',
   'cutouts',
   'tinder',
+  'aww',
+  'niceguys',
+  'nicegirls',
+  'antimlm',
   'funny',
   'meirl',
   'memes',
   'AdviceAnimals',
   'MemeEconomy',
-  'shittyadviceanimals',
   'ComedyCemetery',
-  'teenagers',
   'PrequelMemes',
   'terriblefacebookmemes',
   '2meirl4meirl',
-  'historymemes'
+  'quityourbullshit'
 ]
 
 const randomSub = (arr: any) => arr[Math.floor(Math.random() * arr.length)]
@@ -41,7 +43,7 @@ export const fetchPosts = async () => {
     const response =
       subreddit === 'cutouts' || 'ooer'
         ? await apiClient.get<any>(`/r/${subreddit}/new.json?limit=25&t=month`)
-        : await apiClient.get<any>(`/r/${subreddit}/top.json?limit=25&t=month`)
+        : await apiClient.get<any>(`/r/${subreddit}/hot.json?limit=25&t=week`)
 
     if (response.data.data.children[post]) {
       if(response.data.data.children[post].data.name) {
