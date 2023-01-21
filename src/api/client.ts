@@ -20,6 +20,7 @@ const subreddits = [
   'funny',
   'meirl',
   'memes',
+  'greentext',
   'AdviceAnimals',
   'MemeEconomy',
   'ComedyCemetery',
