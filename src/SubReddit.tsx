@@ -58,7 +58,7 @@ class SubReddit extends React.Component<Props, State> {
             <img src={post.url} className="responsive" alt="funny meme" />
           ) : (
             // <iframe src={`http://${post.url.substring('https://'.length)}`} onClick={() => window.location.reload()} className="responsive" style={{"width": "500px", "height": "500px"}} />
-            <img src="../images/58B85CE6-9449-4D76-A0F4-16E8A7E9B97A.JPG" className="responsive" alt="funny meme" />
+            <img src="../images/tapfornextmeme.png" className="responsive" alt="funny meme" />
           )}
         </Card.Body>
       </div>
